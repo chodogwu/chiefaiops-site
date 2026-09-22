@@ -158,8 +158,8 @@
     .nav-logo em { font-style: italic; color: var(--gold-bright); }
     .nav .btn-gold { padding: 10px 20px; font-size: 13px; }
     .nav-links { display: flex; align-items: center; gap: var(--s6); }
-    .nav-links a { font-size: 13px; font-weight: 500; color: var(--on-dark-2); text-decoration: none; transition: color 140ms var(--ease); }
-    .nav-links a:hover { color: var(--gold-bright); }
+    .nav-links a:not(.btn) { font-size: 13px; font-weight: 500; color: var(--on-dark-2); text-decoration: none; transition: color 140ms var(--ease); }
+    .nav-links a:not(.btn):hover { color: var(--gold-bright); }
     @media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
 
     /* ── HERO (navy-black) ────────────────────────────── */
