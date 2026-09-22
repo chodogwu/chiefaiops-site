@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chief AI Ops</title>
+  <meta name="description" content="We make companies AI-native. Chief AI Ops finds the workflows costing your business the most time and money, redesigns them around your people and systems, and puts AI to work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ───────────────────────────────────────── */
+    :root {
+      --navy:       #0B1929;
+      --navy-mid:   #132638;
+      --navy-light: #1A3048;
+      --gold:       #C4923A;
+      --gold-lt:    #DFB06A;
+      --cream:      #F7F2E8;
+      --warm:       #FAF8F3;
+      --white:      #FFFFFF;
+
+      --bg:         #FAFAF7;
+      --surface:    #FFFFFF;
+      --fg:         #1A2633;
+      --fg2:        #4A5B6B;
+      --fg3:        #8A9DAD;
+      --border:     rgba(26, 38, 51, 0.10);
+      --border-lt:  rgba(26, 38, 51, 0.06);
+
+      --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --f-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:       #0C1520;
+        --surface:  #132638;
+        --fg:       #E8EDF2;
+        --fg2:      #A0B0C0;
+        --fg3:      #6A7A8A;
+        --border:   rgba(200, 220, 240, 0.10);
+        --border-lt:rgba(200, 220, 240, 0.06);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg:       #0C1520;
+      --surface:  #132638;
+      --fg:       #E8EDF2;
+      --fg2:      #A0B0C0;
+      --fg3:      #6A7A8A;
+      --border:   rgba(200, 220, 240, 0.10);
+      --border-lt:rgba(200, 220, 240, 0.06);
+    }
+
+    /* ── RESET ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    body {
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(11, 25, 41, 0.90);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196, 146, 58, 0.14);
+    }
+    .nav-logo {
+      font-family: var(--f-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-cta {
+      font-family: var(--f-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 148px 24px 100px;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 60% at 65% 35%, rgba(196, 146, 58, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 920px; width: 100%; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .eyebrow-light { color: var(--gold-lt); }
+
+    .hero h1 {
+      font-family: var(--f-display);
+      font-size: clamp(48px, 7.5vw, 90px);
+      font-weight: 700;
+      line-height: 1.04;
+      color: #fff;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
+      margin-bottom: 32px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 19px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.58);
+      font-weight: 300;
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.14s;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    .btn-ghost-light {
+      display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      padding: 14px 0;
+      transition: color 0.18s;
+    }
+    .btn-ghost-light:hover { color: rgba(255,255,255,0.80); }
+
+    /* ── SHARED SECTION STRUCTURE ─────────────────────── */
+    .section       { padding: 88px 24px; }
+    .section-cream { background: var(--cream); }
+    .section-white { background: var(--surface); }
+    .section-navy  { background: var(--navy); }
+    .section-bg    { background: var(--bg); }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .section-cream { background: #0E1B28; }
+      :root:not([data-theme="light"]) .section-white { background: var(--surface); }
+    }
+    :root[data-theme="dark"] .section-cream { background: #0E1B28; }
+
+    .inner      { max-width: 900px;  margin: 0 auto; }
+    .inner-wide { max-width: 1140px; margin: 0 auto; }
+    .inner-narrow { max-width: 680px; margin: 0 auto; }
+
+    .sh {
+      font-family: var(--f-display);
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.015em;
+      text-wrap: balance;
+      margin-bottom: 24px;
+    }
+    .sh em { font-style: italic; }
+    .sh-light { color: #fff; }
+
+    /* ── PROBLEM ──────────────────────────────────────── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px 72px;
+      margin-top: 52px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .problem-copy { font-size: 17px; line-height: 1.75; color: var(--fg2); }
+    .problem-copy p + p { margin-top: 18px; }
+
+    .problem-list { list-style: none; margin-top: 28px; }
+    .problem-list li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--fg2);
+      padding: 10px 0 10px 20px;
+      border-bottom: 1px solid var(--border-lt);
+      position: relative;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 21px;
+      width: 7px; height: 1px;
+      background: var(--fg3);
+    }
+
+    .callout-box {
+      background: var(--navy);
+      border-radius: 5px;
+      padding: 36px 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .callout-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold) 0%, transparent 80%);
+    }
+    .callout-box p {
+      font-family: var(--f-display);
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 20px;
+    }
+    .callout-box strong {
+      font-family: var(--f-body);
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── MANIFESTO ────────────────────────────────────── */
+    .manifesto-body { max-width: 700px; }
+    .manifesto-body p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--fg2);
+      margin-bottom: 22px;
+    }
+    .manifesto-body strong { font-weight: 500; color: var(--fg); }
+
+    .pull-quote {
+      font-family: var(--f-display);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.35;
+      color: var(--navy);
+      border-left: 3px solid var(--gold);
+      padding-left: 28px;
+      margin: 48px 0;
+      max-width: 640px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .pull-quote { color: rgba(255,255,255,0.88); }
+    }
+    :root[data-theme="dark"] .pull-quote { color: rgba(255,255,255,0.88); }
+
+    /* ── USE CASES ────────────────────────────────────── */
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border-lt);
+      margin-top: 52px;
+      border: 1px solid var(--border-lt);
+    }
+    @media (max-width: 660px) {
+      .usecase-grid { grid-template-columns: 1fr; }
+    }
+
+    .usecase-card {
+      background: var(--surface);
+      padding: 36px 36px 40px;
+      transition: background 0.16s;
+    }
+    .usecase-card:hover { background: var(--warm); }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .usecase-card { background: var(--navy-mid); }
+      :root:not([data-theme="light"]) .usecase-card:hover { background: var(--navy-light); }
+    }
+    :root[data-theme="dark"] .usecase-card { background: var(--navy-mid); }
+    :root[data-theme="dark"] .usecase-card:hover { background: var(--navy-light); }
+
+    .uc-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .usecase-card h3 {
+      font-family: var(--f-display);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--fg);
+      margin-bottom: 12px;
+    }
+    .usecase-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--fg2);
+    }
+
+    /* ── METHOD ───────────────────────────────────────── */
+    .method-flow {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    @media (max-width: 960px) {
+      .method-flow { grid-template-columns: repeat(4, 1fr); row-gap: 32px; }
+    }
+    @media (max-width: 560px) {
+      .method-flow { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+    }
+
+    .method-step { text-align: center; padding: 0 6px; position: relative; }
+
+    .method-step::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: calc(50% + 22px);
+      right: -1px;
+      height: 1px;
+      background: rgba(196, 146, 58, 0.25);
+    }
+    .method-step:last-child::after,
+    .method-step:nth-child(4)::after { display: none; }
+
+    @media (max-width: 960px) {
+      .method-step::after { display: none; }
+    }
+
+    .method-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(196, 146, 58, 0.12);
+      border: 1px solid rgba(196, 146, 58, 0.35);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .method-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 8px;
+    }
+    .method-desc {
+      font-size: 11px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── CASE STUDY ───────────────────────────────────── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(196, 146, 58, 0.18);
+      border: 1px solid rgba(196, 146, 58, 0.20);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 48px 0 44px;
+    }
+    @media (max-width: 680px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .kpi-cell {
+      background: rgba(11, 25, 41, 0.82);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .kpi-num {
+      font-family: var(--f-display);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-num sub { font-size: 0.5em; vertical-align: baseline; position: relative; top: -0.1em; }
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.45;
+    }
+
+    .case-body p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+    .case-body strong { color: rgba(255,255,255,0.88); font-weight: 500; }
+
+    /* ── SERVICES ─────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 52px;
+    }
+    @media (max-width: 680px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    .svc-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 40px;
+      position: relative;
+      transition: border-color 0.20s;
+    }
+    .svc-card:hover { border-color: rgba(196, 146, 58, 0.40); }
+    .svc-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 5px 5px 0 0;
+    }
+
+    .svc-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .svc-card h3 {
+      font-family: var(--f-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .svc-card > p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg2);
+      margin-bottom: 24px;
+    }
+    .svc-price {
+      font-family: var(--f-display);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .svc-price span {
+      font-family: var(--f-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fg3);
+    }
+    .svc-list { list-style: none; margin: 20px 0 32px; }
+    .svc-list li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--fg2);
+      padding: 7px 0 7px 20px;
+      border-bottom: 1px solid var(--border-lt);
+      position: relative;
+    }
+    .svc-list li:last-child { border-bottom: none; }
+    .svc-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0; top: 8px;
+      color: var(--gold);
+      font-size: 11px;
+    }
+
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background 0.18s;
+    }
+    .btn-navy:hover { background: var(--navy-mid); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--fg);
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── PROCESS ──────────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border-lt);
+      margin-top: 52px;
+    }
+    @media (max-width: 780px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 440px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
+    .process-cell {
+      background: var(--surface);
+      padding: 32px 28px 36px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .process-cell { background: var(--navy-mid); }
+    }
+    :root[data-theme="dark"] .process-cell { background: var(--navy-mid); }
+
+    .process-n {
+      font-family: var(--f-display);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 18px;
+      font-variant-numeric: tabular-nums;
+    }
+    .process-cell h3 {
+      font-family: var(--f-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .process-cell p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--fg2);
+    }
+
+    /* ── WHO ──────────────────────────────────────────── */
+    .who-body p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--fg2);
+      margin-bottom: 20px;
+    }
+    .who-body strong { font-weight: 500; color: var(--fg); }
+
+    .criteria-list {
+      margin: 36px 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .criteria-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      font-size: 15px;
+      color: var(--fg2);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .criteria-row:last-child { border-bottom: none; }
+    .criteria-row::before {
+      content: '✓';
+      color: var(--gold);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .criteria-row { background: var(--navy-mid); }
+    }
+    :root[data-theme="dark"] .criteria-row { background: var(--navy-mid); }
+
+    .who-quote {
+      font-family: var(--f-display);
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--fg);
+      margin-top: 8px;
+    }
+
+    /* ── PHILOSOPHY ROW ───────────────────────────────── */
+    .philosophy-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(196, 146, 58, 0.18);
+      margin-top: 40px;
+    }
+    @media (max-width: 640px) {
+      .philosophy-row { grid-template-columns: 1fr; }
+    }
+    .phil-cell {
+      background: rgba(11, 25, 41, 0.85);
+      padding: 32px 28px;
+    }
+    .phil-head {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .phil-body {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.60);
+    }
+
+    /* ── FINAL CTA ────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(196, 146, 58, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+    .cta-inner h2 {
+      font-family: var(--f-display);
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .cta-inner h2 span { color: var(--gold); }
+    .cta-inner p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.50);
+      margin-bottom: 44px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gold-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,146,58,0.5), transparent);
+      max-width: 300px;
+      margin: 0 auto 44px;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .footer {
+      background: #070F18;
+      padding: 44px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(196, 146, 58, 0.10);
+    }
+    .footer-logo {
+      font-family: var(--f-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tag {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── UTILITIES ────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .btn-gold, .nav-cta { transition: background 0.18s, transform 0.14s; }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Chief <span>AI</span> Ops</a>
+  <a href="#sprint" class="nav-cta">Book a Discovery Call</a>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">AI Implementation · AI Operations · AI-Native Transformation</div>
+    <h1>We Make<br>Companies<br><em>AI-Native.</em></h1>
+    <p class="hero-sub">You probably don't need another AI tool. You need AI doing real work inside your business — finding the workflows costing your company the most time, money, and attention, and redesigning them around your people and systems.</p>
+    <div class="cta-row">
+      <a href="#sprint" class="btn-gold">Find Your First AI Workflow →</a>
+      <a href="#method" class="btn-ghost-light">See How It Works ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROBLEM ───────────────────────────────────────── -->
+<section class="section section-cream">
+  <div class="inner">
+    <div class="eyebrow">The Problem</div>
+    <h2 class="sh">AI Everywhere.<br><em>Transformation Nowhere.</em></h2>
+
+    <div class="problem-grid">
+      <div>
+        <div class="problem-copy">
+          <p>Your company probably already uses AI. Someone has ChatGPT. Someone else is experimenting with Claude. Your sales team bought an AI tool. Marketing added three more. An employee built a clever automation nobody else understands.</p>
+          <p>And yet the way work actually gets done hasn't changed.</p>
+        </div>
+        <ul class="problem-list">
+          <li>Customer emails still pile up</li>
+          <li>Salespeople still copy information between systems</li>
+          <li>Reports still take hours to assemble</li>
+          <li>Managers still chase people for updates</li>
+          <li>Employees still spend large parts of their day on work a machine could handle</li>
+        </ul>
+      </div>
+      <div>
+        <div class="callout-box">
+          <p>"Most companies approach AI backwards. They start with the technology — which tool, which platform, which model."</p>
+          <p>"We start somewhere else."</p>
+          <strong>Where is your business losing the most time, money, or capacity right now?</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MANIFESTO ─────────────────────────────────────── -->
+<section class="section section-white">
+  <div class="inner">
+    <div class="eyebrow">Our Approach</div>
+    <h2 class="sh">Stop Adding AI<br>to <em>Broken Workflows.</em></h2>
+    <div class="manifesto-body">
+      <p>Find that workflow first. Understand how it actually works. Measure the bottlenecks. Then redesign it from the ground up for a world where humans, AI agents, automation, and your existing software work together.</p>
+      <blockquote class="pull-quote">That's how companies become AI-native. Not by buying more AI. By changing how the work gets done.</blockquote>
+      <p>You don't need a six-month AI transformation project. You need one meaningful win. A workflow your employees touch every day. A workflow management already knows is slow. <strong>A workflow where the economics are obvious.</strong></p>
+      <p>Pick the right workflow, rebuild it properly, and suddenly AI stops being an experiment. It becomes infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── USE CASES ─────────────────────────────────────── -->
+<section class="section section-cream">
+  <div class="inner-wide">
+    <div class="eyebrow">What AI-Native Looks Like</div>
+    <h2 class="sh">Real Workflows, <em>Redesigned.</em></h2>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="uc-tag">Customer Service</div>
+        <h3>Triage, draft, route — before a human reads it.</h3>
+        <p>Incoming messages are classified automatically. The system identifies the problem, retrieves company knowledge, drafts the appropriate response, and routes unusual or high-risk cases to a human. Your team reviews instead of starting from scratch.</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-tag">Sales</div>
+        <h3>Call ends. CRM is already updated.</h3>
+        <p>Meeting information is captured. The CRM is updated. Follow-up is drafted. Relevant research is gathered. A proposal can be assembled from approved company information. The salesperson focuses on selling.</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-tag">Research & Reporting</div>
+        <h3>First-pass assembly in minutes, not hours.</h3>
+        <p>Instead of 15 tabs and a manual assembly process, specialized AI systems handle much of the research and first-pass compilation. Your team reviews the evidence, applies judgment, and makes the decisions.</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-tag">Operations</div>
+        <h3>Humans stop acting like middleware.</h3>
+        <p>Information moves system to system automatically. Requests get routed. Approvals get triggered. Logs get created. Exceptions get escalated. People spend less time routing and more time deciding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── METHOD ────────────────────────────────────────── -->
+<section class="section section-navy" id="method">
+  <div class="inner-wide">
+    <div class="eyebrow eyebrow-light">The Chief AI Ops Method™</div>
+    <h2 class="sh sh-light">We begin with the work,<br><em>not the technology.</em></h2>
+
+    <div class="method-flow">
+      <div class="method-step">
+        <div class="method-num">1</div>
+        <div class="method-label">Find It</div>
+        <div class="method-desc">Identify the workflow with the highest operational or financial return</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">2</div>
+        <div class="method-label">Redesign It</div>
+        <div class="method-desc">Map the process and rebuild it around humans + AI + automation + systems</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">3</div>
+        <div class="method-label">Build It</div>
+        <div class="method-desc">Create AI agents, knowledge bases, integrations, and approval logic</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">4</div>
+        <div class="method-label">Ship It</div>
+        <div class="method-desc">Move out of the demo environment and into day-to-day operations</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">5</div>
+        <div class="method-label">Prove It</div>
+        <div class="method-desc">Measure time saved, response rates, throughput, and capacity created</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">6</div>
+        <div class="method-label">Train It</div>
+        <div class="method-desc">Teach your team to supervise AI, review outputs, and handle exceptions</div>
+      </div>
+      <div class="method-step">
+        <div class="method-num">7</div>
+        <div class="method-label">Compound It</div>
+        <div class="method-desc">One successful workflow becomes the operating blueprint for the next</div>
+      </div>
+    </div>
+
+    <div class="philosophy-row" style="margin-top:60px;">
+      <div class="phil-cell">
+        <div class="phil-head">Not Agents for Sale</div>
+        <div class="phil-body">Nobody wakes up wanting "a six-agent RAG workflow." You want customer inquiries handled faster. The technology isn't the product. The result is.</div>
+      </div>
+      <div class="phil-cell">
+        <div class="phil-head">Human + AI, Not Human vs. AI</div>
+        <div class="phil-body">The machine does more of the machine work. Your people do more of the work you hired people to do. That's the design principle behind every implementation.</div>
+      </div>
+      <div class="phil-cell">
+        <div class="phil-head">Measured or It Didn't Happen</div>
+        <div class="phil-body">We establish the baseline before we build. If we can't explain where the economic value comes from, we shouldn't automate the workflow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CASE STUDY ─────────────────────────────────────── -->
+<section class="section section-navy">
+  <div class="inner">
+    <div class="eyebrow eyebrow-light">First Implementation</div>
+    <h2 class="sh sh-light">From 10–15 Minutes Per Email<br><em>to Under 2 Minutes.</em></h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.38);letter-spacing:0.04em;text-transform:uppercase;margin-top:6px;">Noosa Pest Management</p>
+
+    <div class="kpi-row">
+      <div class="kpi-cell">
+        <span class="kpi-num">&lt;2<sub>min</sub></span>
+        <span class="kpi-label">Response time<br>down from 10–15 min</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-num">20–25<sub>hrs</sub></span>
+        <span class="kpi-label">Team capacity<br>created per week</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-num">6</span>
+        <span class="kpi-label">Specialized AI agents<br>operating in production</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-num">$176K</span>
+        <span class="kpi-label">ARR protected through<br>faster emergency response</span>
+      </div>
+    </div>
+
+    <div class="case-body">
+      <p>A high-volume customer email workflow required employees to repeatedly read incoming requests, determine the type of problem, find the appropriate information, formulate a response, and handle urgent cases correctly — every single email, every single day.</p>
+      <p>The redesigned system uses six specialized AI agents to process approximately 20 to 30 customer emails each day. <strong>The important part isn't that six AI agents were built.</strong> The important part is that a slow business process became faster, measurable, and substantially less dependent on repetitive human work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ───────────────────────────────────────── -->
+<section class="section section-white" id="sprint">
+  <div class="inner-wide">
+    <div class="eyebrow">Services</div>
+    <h2 class="sh">Two Ways to Work Together.</h2>
+
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-top-bar"></div>
+        <div class="svc-tag">Step One</div>
+        <h3>AI Workflow Discovery Sprint</h3>
+        <p>Before we build anything, we find the right problem. A focused analysis of one important workflow inside your company — delivered within 7 business days. The plan is yours whether you hire us to build it or not.</p>
+        <div class="svc-price">$5,000 <span>fixed fee</span></div>
+        <ul class="svc-list">
+          <li>One workflow, mapped end-to-end</li>
+          <li>Bottleneck and current-cost analysis</li>
+          <li>AI-native redesign architecture</li>
+          <li>Human and AI responsibility design</li>
+          <li>ROI projection and implementation roadmap</li>
+          <li>Delivered within 7 business days</li>
+          <li>Yours to keep, regardless of next steps</li>
+        </ul>
+        <a href="#contact" class="btn-navy">Apply for a Discovery Sprint</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-top-bar"></div>
+        <div class="svc-tag">Step Two</div>
+        <h3>AI Workflow Implementation</h3>
+        <p>We take the redesigned workflow from plan to running system — AI agents, knowledge base, integrations, business rules, human approvals, testing, documentation, deployment, and employee training.</p>
+        <div class="svc-price">From $8,000 <span>depending on complexity</span></div>
+        <ul class="svc-list">
+          <li>Departmental workflows: 4–6 weeks</li>
+          <li>Cross-functional workflows: 6–8 weeks</li>
+          <li>Agent development and system integration</li>
+          <li>Testing with real scenarios before launch</li>
+          <li>Employee training included in every project</li>
+          <li>Stabilization support post-launch</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Learn About Implementation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ────────────────────────────────────────── -->
+<section class="section section-cream">
+  <div class="inner-wide">
+    <div class="eyebrow">What Happens Next</div>
+    <h2 class="sh">Four Steps. No Giant<br><em>Transformation Contract.</em></h2>
+    <div class="process-grid">
+      <div class="process-cell">
+        <div class="process-n">01</div>
+        <h3>Book a Discovery Call</h3>
+        <p>We discuss where work is getting stuck, what your team is doing manually, and whether there's a workflow worth investigating.</p>
+      </div>
+      <div class="process-cell">
+        <div class="process-n">02</div>
+        <h3>Choose Your First Workflow</h3>
+        <p>If there's a strong fit, we scope a single workflow for an AI Workflow Discovery Sprint.</p>
+      </div>
+      <div class="process-cell">
+        <div class="process-n">03</div>
+        <h3>Get Your Redesign Plan</h3>
+        <p>Within 7 business days: current workflow, AI-native alternative, economics, technical requirements, and the implementation path.</p>
+      </div>
+      <div class="process-cell">
+        <div class="process-n">04</div>
+        <h3>Decide Whether to Build</h3>
+        <p>Take the plan and implement it yourself. Give it to your internal team. Hire another partner. Or have Chief AI Ops build it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHO ───────────────────────────────────────────── -->
+<section class="section section-white">
+  <div class="inner-narrow">
+    <div class="eyebrow">Who This Is For</div>
+    <h2 class="sh">Growing companies where operational complexity has started outrunning the way work gets done.</h2>
+
+    <div class="who-body" style="margin-top:32px;">
+      <p>Especially professional services firms, accounting businesses, recruiting companies, and marketing agencies — teams spending significant time on email, research, reporting, sales administration, onboarding, document creation, and repetitive knowledge work.</p>
+    </div>
+
+    <div class="criteria-list">
+      <div class="criteria-row">You don't need an AI department or a chief AI officer</div>
+      <div class="criteria-row">20 to 500 employees</div>
+      <div class="criteria-row">Executive sponsorship — a CEO or COO who can champion the change</div>
+      <div class="criteria-row">Access to the people and systems involved in the workflow</div>
+      <div class="criteria-row">Willingness to change how the work gets done</div>
+    </div>
+
+    <p class="who-quote">"We know AI matters. We just don't know what to do with it."</p>
+    <p style="font-size:16px;color:var(--fg2);margin-top:8px;">That's exactly where we start.</p>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ──────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="eyebrow eyebrow-light" style="margin-bottom:28px;">Start Here</div>
+    <div class="gold-rule"></div>
+    <h2>The goal isn't more AI.<br>It's a <span>better company.</span></h2>
+    <p>Start with one workflow. Prove the economics. Learn what works inside your organization. Then decide whether another workflow deserves the same treatment.</p>
+    <a href="https://calendly.com" class="btn-gold" style="font-size:14px;padding:16px 36px;">Find Your First AI Workflow →</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-logo">Chief <span>AI</span> Ops</div>
+  <p class="footer-tag">We Make Companies AI-Native &nbsp;·&nbsp; AI Implementation &nbsp;·&nbsp; AI Operations &nbsp;·&nbsp; AI-Native Transformation</p>
+</footer>
+
+</body>
+</html>
