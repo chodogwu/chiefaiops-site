@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Chief AI Ops</title>
-  <meta name="description" content="We make companies AI-native. Chief AI Ops finds the workflows costing your business the most time and money, redesigns them around your people and systems, and puts AI to work.">
+  <meta name="description" content="Chief AI Ops finds the workflow eating your team's week, rebuilds it around AI and the systems you already use, and puts it into production.">
   <style>
     /* ==========================================================================
        Chi Odogwu — global brand design tokens
@@ -95,8 +95,6 @@
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
       .glass { background: rgba(28, 36, 56, 0.94); }
     }
-    /* dark backing wash so the glass card reads as a floating dark panel
-       even where it sits on a light (cream) section */
     .glass-dark { background-color: rgba(15, 22, 38, 0.86); background-blend-mode: normal; }
 
     .btn {
@@ -148,7 +146,6 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--hair-dark);
-      border-radius: 0;
     }
     .nav-logo {
       font-family: var(--font-display);
@@ -159,14 +156,13 @@
       letter-spacing: -0.005em;
     }
     .nav-logo em { font-style: italic; color: var(--gold-bright); }
-
     .nav .btn-gold { padding: 10px 20px; font-size: 13px; }
 
     /* ── HERO (navy-black) ────────────────────────────── */
     .hero {
       background: var(--navy-black);
       padding: 148px var(--gutter) var(--s9);
-      min-height: 88vh;
+      min-height: 82vh;
       display: flex;
       align-items: center;
       position: relative;
@@ -195,8 +191,8 @@
     .hero h1 {
       font-family: var(--font-display);
       font-weight: 500;
-      font-size: clamp(46px, 7.2vw, 84px);
-      line-height: 1.06;
+      font-size: clamp(46px, 8vw, 92px);
+      line-height: 1.04;
       color: var(--on-dark);
       letter-spacing: -0.015em;
       text-wrap: balance;
@@ -211,10 +207,11 @@
       color: var(--on-dark-2);
       font-weight: 400;
       max-width: 56ch;
-      margin-bottom: var(--s7);
+      margin-bottom: var(--s3);
     }
+    .hero-sub + .hero-sub { margin-bottom: var(--s7); }
 
-    .cta-row { display: flex; gap: var(--s4); flex-wrap: wrap; align-items: center; }
+    .cta-row { display: flex; gap: var(--s5); flex-wrap: wrap; align-items: center; margin-bottom: var(--s6); }
 
     .link-ghost {
       display: inline-flex;
@@ -225,9 +222,12 @@
       color: var(--on-dark-2);
       text-decoration: none;
       padding: 13px 4px;
-      transition: color 140ms var(--ease);
+      border-bottom: 1px solid var(--hair-dark);
+      transition: color 140ms var(--ease), border-color 140ms var(--ease);
     }
-    .link-ghost:hover { color: var(--on-dark); }
+    .link-ghost:hover { color: var(--on-dark); border-color: var(--gold-bright); }
+    .link-ghost-light { color: var(--ink-2); border-bottom: 1px solid var(--hair); }
+    .link-ghost-light:hover { color: var(--ink); border-color: var(--gold-deep); }
 
     /* ── SECTION STRUCTURE ────────────────────────────── */
     .section { padding: var(--section) var(--gutter); }
@@ -257,286 +257,123 @@
 
     p { max-width: var(--measure); }
 
+    .mini-cta { margin-top: var(--s7); text-align: center; }
+    .mini-cta p { margin: 0 auto var(--s5); max-width: 46ch; font-size: 16px; }
+    .bg-navy .mini-cta p, .bg-navy-deep .mini-cta p, .bg-navy-black .mini-cta p { color: var(--on-dark-2); }
+    .bg-cream .mini-cta p, .bg-cream-2 .mini-cta p, .bg-paper .mini-cta p { color: var(--ink-2); }
+
     /* ── PROBLEM ──────────────────────────────────────── */
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s8) var(--s8);
-      margin-top: var(--s7);
-      align-items: start;
-    }
-    @media (max-width: 700px) {
-      .problem-grid { grid-template-columns: 1fr; gap: var(--s6); }
-    }
+    .body-copy { font-size: 17px; line-height: 1.75; color: var(--ink-2); }
+    .body-copy p + p { margin-top: var(--s4); }
 
-    .problem-copy { font-size: 17px; line-height: 1.75; color: var(--ink-2); }
-    .problem-copy p + p { margin-top: var(--s4); }
-
-    .problem-list { list-style: none; margin-top: var(--s5); }
-    .problem-list li {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--ink-2);
-      padding: var(--s3) 0 var(--s3) 20px;
-      border-bottom: 1px solid var(--hair);
-      position: relative;
-      max-width: none;
+    .dash-list { list-style: none; margin-top: var(--s5); }
+    .dash-list li {
+      font-size: 16px; line-height: 1.65; color: var(--ink-2);
+      padding: var(--s3) 0 var(--s3) 20px; border-bottom: 1px solid var(--hair);
+      position: relative; max-width: none;
     }
-    .problem-list li:last-child { border-bottom: none; }
-    .problem-list li::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 21px;
-      width: 7px; height: 1px;
-      background: var(--gold-deep);
-    }
+    .dash-list li:last-child { border-bottom: none; }
+    .dash-list li::before { content: ''; position: absolute; left: 0; top: 21px; width: 7px; height: 1px; background: var(--gold-deep); }
+    .closer { margin-top: var(--s6); font-size: 17px; color: var(--ink); font-weight: 500; max-width: none; }
 
     /* the one "hero frame" glass moment outside the hero itself */
-    .quote-card {
-      border-radius: var(--r-lg);
-      padding: var(--s7) var(--s6);
-      position: relative;
-    }
+    .quote-card { border-radius: var(--r-lg); padding: var(--s7) var(--s6); position: relative; }
     .quote-card p {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: 20px;
-      font-style: italic;
-      line-height: 1.55;
-      color: var(--on-dark);
-      margin-bottom: var(--s4);
-      max-width: none;
+      font-family: var(--font-display); font-weight: 500; font-size: 19px; font-style: italic;
+      line-height: 1.55; color: var(--on-dark); margin-bottom: var(--s4); max-width: none;
     }
     .quote-card strong {
-      display: block;
-      font-family: var(--font-text);
-      font-style: normal;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      margin-top: var(--s3);
+      display: block; font-family: var(--font-text); font-style: normal; font-size: 13px;
+      font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--gold-bright); margin-top: var(--s3);
     }
 
     /* ── MANIFESTO ────────────────────────────────────── */
-    .manifesto-body p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--ink-2);
-      margin-bottom: var(--s5);
-    }
+    .manifesto-body p { font-size: 18px; line-height: 1.8; color: var(--ink-2); margin-bottom: var(--s5); }
     .manifesto-body strong { font-weight: 700; color: var(--ink); }
-
     .pull-quote {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: clamp(23px, 3vw, 30px);
-      font-style: italic;
-      line-height: 1.38;
-      color: var(--navy);
-      border-left: 3px solid var(--gold);
-      padding-left: var(--s6);
-      margin: var(--s7) 0;
-      max-width: 58ch;
+      font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 2.8vw, 28px);
+      font-style: italic; line-height: 1.4; color: var(--navy); border-left: 3px solid var(--gold);
+      padding-left: var(--s6); margin: var(--s7) 0; max-width: 58ch;
     }
 
-    /* ── FLAT CARD GRIDS (use cases, process) ─────────── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s5);
-      margin-top: var(--s7);
-    }
-    @media (max-width: 660px) {
-      .card-grid { grid-template-columns: 1fr; }
-    }
+    /* ── WORKFLOW CARDS (before/after) ────────────────── */
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); margin-top: var(--s7); }
+    @media (max-width: 660px) { .card-grid { grid-template-columns: 1fr; } }
 
-    .flat-card {
-      background: var(--paper);
-      border: 1px solid var(--hair);
-      border-radius: var(--r-md);
-      padding: var(--s6);
-      transition: border-color 160ms var(--ease);
-    }
-    .flat-card:hover { border-color: var(--gold); }
+    .flat-card { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-md); padding: var(--s6); }
 
-    .tag {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      margin-bottom: var(--s4);
+    .tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: var(--s4); }
+    .flat-card h3 { font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 1.3; color: var(--ink); margin-bottom: var(--s5); }
+
+    .wf-row { margin-bottom: var(--s4); }
+    .wf-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-2); opacity: 0.7; margin-bottom: var(--s2); }
+    .wf-row p { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: none; }
+    .wf-change {
+      font-size: 14px; line-height: 1.6; color: var(--ink); max-width: none;
+      border-top: 1px solid var(--hair); padding-top: var(--s4); margin-top: var(--s5);
     }
-    .flat-card h3 {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: 21px;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: var(--s3);
-    }
-    .flat-card p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--ink-2);
-      max-width: none;
-    }
+    .wf-change strong { color: var(--gold-deep); font-weight: 700; }
 
     /* ── METHOD ───────────────────────────────────────── */
-    .method-flow {
-      margin-top: var(--s8);
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0;
-    }
-    @media (max-width: 960px) {
-      .method-flow { grid-template-columns: repeat(4, 1fr); row-gap: var(--s6); }
-    }
-    @media (max-width: 560px) {
-      .method-flow { grid-template-columns: repeat(2, 1fr); row-gap: var(--s5); }
-    }
+    .method-flow { margin-top: var(--s8); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s5); }
+    @media (max-width: 720px) { .method-flow { grid-template-columns: 1fr 1fr; row-gap: var(--s6); } }
+    @media (max-width: 460px) { .method-flow { grid-template-columns: 1fr; } }
 
-    .method-step { text-align: center; padding: 0 6px; position: relative; }
-    .method-step::after {
-      content: '';
-      position: absolute;
-      top: 18px;
-      left: calc(50% + 22px);
-      right: -1px;
-      height: 1px;
-      background: var(--hair-dark);
-    }
-    .method-step:last-child::after,
-    .method-step:nth-child(4)::after { display: none; }
-    @media (max-width: 960px) { .method-step::after { display: none; } }
-
+    .method-step { position: relative; }
     .method-num {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: rgba(240, 199, 102, 0.10);
-      border: 1px solid rgba(240, 199, 102, 0.35);
-      color: var(--gold-bright);
-      font-family: var(--font-text);
-      font-size: 12px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--s4);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(240, 199, 102, 0.10); border: 1px solid rgba(240, 199, 102, 0.35);
+      color: var(--gold-bright); font-family: var(--font-text); font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; margin-bottom: var(--s4);
     }
-    .method-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      margin-bottom: var(--s2);
-    }
-    .method-desc {
-      font-size: 11px;
-      line-height: 1.55;
-      color: var(--on-dark-2);
-    }
-
-    .phil-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--s4);
-      margin-top: var(--s8);
-    }
-    @media (max-width: 640px) { .phil-row { grid-template-columns: 1fr; } }
-    .phil-cell {
-      background: var(--navy-deep);
-      border: 1px solid var(--hair-dark);
-      border-radius: var(--r-md);
-      padding: var(--s6);
-    }
-    .phil-head {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      margin-bottom: var(--s3);
-    }
-    .phil-body { font-size: 15px; line-height: 1.65; color: var(--on-dark-2); max-width: none; }
+    .method-label { font-family: var(--font-display); font-weight: 500; font-size: 18px; color: var(--on-dark); margin-bottom: var(--s2); }
+    .method-desc { font-size: 13px; line-height: 1.6; color: var(--on-dark-2); max-width: none; }
 
     /* ── CASE STUDY ───────────────────────────────────── */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--s3);
-      margin: var(--s7) 0 var(--s6);
-    }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); margin: var(--s7) 0 var(--s6); }
     @media (max-width: 680px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
 
-    .kpi-cell {
-      background: var(--navy-black);
-      border: 1px solid var(--hair-dark);
-      border-radius: var(--r-md);
-      padding: var(--s5) var(--s4);
-      text-align: center;
-    }
-    .kpi-num {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: clamp(27px, 3.8vw, 40px);
-      color: var(--gold-bright);
-      line-height: 1;
-      display: block;
-      margin-bottom: var(--s2);
-      font-variant-numeric: tabular-nums;
-    }
+    .kpi-cell { background: var(--navy-black); border: 1px solid var(--hair-dark); border-radius: var(--r-md); padding: var(--s5) var(--s4); text-align: center; }
+    .kpi-num { font-family: var(--font-display); font-weight: 500; font-size: clamp(27px, 3.8vw, 40px); color: var(--gold-bright); line-height: 1; display: block; margin-bottom: var(--s2); font-variant-numeric: tabular-nums; }
     .kpi-num sub { font-size: 0.5em; vertical-align: baseline; position: relative; top: -0.1em; }
     .kpi-label { font-size: 12px; color: var(--on-dark-2); line-height: 1.45; }
+    .kpi-est { display: block; font-style: italic; opacity: 0.6; margin-top: 2px; }
 
-    .case-body p {
-      font-size: 17px;
-      line-height: 1.8;
-      color: var(--on-dark-2);
-      margin-bottom: var(--s4);
-      max-width: var(--measure);
-    }
+    .case-body p { font-size: 17px; line-height: 1.8; color: var(--on-dark-2); margin-bottom: var(--s4); max-width: var(--measure); }
     .case-body strong { color: var(--on-dark); font-weight: 700; }
 
-    /* ── SERVICES ─────────────────────────────────────── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--s5);
-      margin-top: var(--s7);
+    .agent-list { list-style: none; margin: var(--s5) 0 var(--s6); max-width: var(--measure); }
+    .agent-list li {
+      font-size: 15px; line-height: 1.6; color: var(--on-dark-2); padding: var(--s3) 0;
+      border-bottom: 1px solid var(--hair-dark); max-width: none;
     }
+    .agent-list li:last-child { border-bottom: none; }
+    .agent-list strong { color: var(--gold-bright); font-weight: 700; }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq-list { margin-top: var(--s7); display: flex; flex-direction: column; }
+    .faq-item { padding: var(--s6) 0; border-bottom: 1px solid var(--hair); }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: 21px; color: var(--navy); margin-bottom: var(--s3); }
+    .faq-item p { font-size: 15px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
+
+    /* ── SERVICES ─────────────────────────────────────── */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); margin-top: var(--s7); }
     @media (max-width: 680px) { .services-grid { grid-template-columns: 1fr; } }
 
-    .svc-card {
-      background: var(--cream-2);
-      border: 1px solid var(--hair);
-      border-radius: var(--r-lg);
-      padding: var(--s7);
-    }
-    .svc-tag {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold-deep); margin-bottom: var(--s4);
-    }
-    .svc-card h3 {
-      font-family: var(--font-display); font-weight: 500; font-size: 24px; line-height: 1.22;
-      color: var(--ink); margin-bottom: var(--s3);
-    }
+    .svc-card { background: var(--cream-2); border: 1px solid var(--hair); border-radius: var(--r-lg); padding: var(--s7); }
+    .svc-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: var(--s4); }
+    .svc-card h3 { font-family: var(--font-display); font-weight: 500; font-size: 24px; line-height: 1.22; color: var(--ink); margin-bottom: var(--s3); }
     .svc-card > p { font-size: 15px; line-height: 1.7; color: var(--ink-2); margin-bottom: var(--s5); max-width: none; }
-    .svc-price {
-      font-family: var(--font-display); font-weight: 500; font-size: 32px; color: var(--ink);
-      margin-bottom: var(--s1); line-height: 1;
-    }
+    .svc-price { font-family: var(--font-display); font-weight: 500; font-size: 30px; color: var(--ink); margin-bottom: var(--s1); line-height: 1.2; }
     .svc-price span { font-family: var(--font-text); font-size: 14px; font-weight: 400; color: var(--ink-2); }
     .svc-list { list-style: none; margin: var(--s5) 0 var(--s6); }
-    .svc-list li {
-      font-size: 14px; line-height: 1.65; color: var(--ink-2);
-      padding: var(--s2) 0 var(--s2) 20px; border-bottom: 1px solid var(--hair); position: relative; max-width: none;
-    }
+    .svc-list li { font-size: 14px; line-height: 1.65; color: var(--ink-2); padding: var(--s2) 0 var(--s2) 20px; border-bottom: 1px solid var(--hair); position: relative; max-width: none; }
     .svc-list li:last-child { border-bottom: none; }
     .svc-list li::before { content: '→'; position: absolute; left: 0; top: 8px; color: var(--gold-deep); font-size: 11px; }
+    .svc-note { font-size: 13px; color: var(--ink-2); margin-bottom: var(--s5); font-style: italic; max-width: none; }
 
     .btn-outline {
       display: inline-flex; align-items: center; font-family: var(--font-text);
@@ -547,80 +384,49 @@
     }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold-deep); }
 
+    /* ── FOUNDER ──────────────────────────────────────── */
+    .bio-body p { font-size: 17px; line-height: 1.8; color: var(--ink-2); margin-bottom: var(--s5); }
+    .bio-body strong { font-weight: 700; color: var(--ink); }
+    .bio-name { font-family: var(--font-display); font-weight: 500; font-size: 26px; color: var(--ink); margin-bottom: var(--s5); }
+    .bio-name em { font-style: italic; color: var(--gold-deep); }
+
     /* ── PROCESS ──────────────────────────────────────── */
-    .process-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); margin-top: var(--s7);
-    }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); margin-top: var(--s7); }
     @media (max-width: 780px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 440px) { .process-grid { grid-template-columns: 1fr; } }
 
-    .process-cell {
-      background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-md);
-      padding: var(--s6);
-    }
-    .process-n {
-      font-family: var(--font-display); font-weight: 500; font-size: 36px; color: var(--gold-deep);
-      opacity: 0.55; line-height: 1; margin-bottom: var(--s4); font-variant-numeric: tabular-nums;
-    }
-    .process-cell h3 {
-      font-family: var(--font-display); font-weight: 500; font-size: 18px; color: var(--ink);
-      margin-bottom: var(--s2); line-height: 1.25;
-    }
+    .process-cell { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-md); padding: var(--s6); }
+    .process-n { font-family: var(--font-display); font-weight: 500; font-size: 36px; color: var(--gold-deep); opacity: 0.55; line-height: 1; margin-bottom: var(--s4); font-variant-numeric: tabular-nums; }
+    .process-cell h3 { font-family: var(--font-display); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: var(--s2); line-height: 1.25; }
     .process-cell p { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: none; }
 
     /* ── WHO ──────────────────────────────────────────── */
     .who-body p { font-size: 18px; line-height: 1.8; color: var(--ink-2); margin-bottom: var(--s4); }
     .who-body strong { font-weight: 700; color: var(--ink); }
-
     .criteria-list { margin: var(--s6) 0; display: flex; flex-direction: column; gap: var(--s2); }
-    .criteria-row {
-      display: flex; align-items: center; gap: var(--s4);
-      padding: var(--s4) var(--s5); font-size: 15px; color: var(--ink-2);
-      background: var(--cream-2); border: 1px solid var(--hair); border-radius: var(--r-sm);
-    }
+    .criteria-row { display: flex; align-items: center; gap: var(--s4); padding: var(--s4) var(--s5); font-size: 15px; color: var(--ink-2); background: var(--cream-2); border: 1px solid var(--hair); border-radius: var(--r-sm); }
     .criteria-row::before { content: '✓'; color: var(--gold-deep); font-size: 13px; flex-shrink: 0; }
-
-    .who-quote {
-      font-family: var(--font-display); font-weight: 500; font-size: 22px; font-style: italic;
-      line-height: 1.5; color: var(--navy); margin-top: var(--s2); max-width: 58ch;
-    }
+    .who-quote { font-family: var(--font-display); font-weight: 500; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--navy); margin-top: var(--s2); max-width: 58ch; }
 
     /* ── FINAL CTA ────────────────────────────────────── */
     .cta-section { text-align: center; position: relative; overflow: hidden; }
-    .cta-section::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(201, 161, 74, 0.10) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(201, 161, 74, 0.10) 0%, transparent 70%); pointer-events: none; }
     .cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
-    .cta-inner h2 {
-      font-family: var(--font-display); font-weight: 500;
-      font-size: clamp(32px, 4.6vw, 52px); line-height: 1.14; letter-spacing: -0.01em;
-      color: var(--on-dark); margin-bottom: var(--s4);
-    }
+    .cta-inner h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.14; letter-spacing: -0.01em; color: var(--on-dark); margin-bottom: var(--s4); }
     .cta-inner h2 em { font-style: italic; color: var(--gold-bright); }
-    .cta-inner p {
-      font-size: 17px; line-height: 1.65; color: var(--on-dark-2);
-      margin: 0 auto var(--s8); max-width: 46ch;
-    }
-
-    .gold-rule {
-      height: 1px; max-width: 280px; margin: 0 auto var(--s7);
-      background: linear-gradient(90deg, transparent, rgba(201, 161, 74, 0.55), transparent);
-    }
+    .cta-inner p { font-size: 17px; line-height: 1.65; color: var(--on-dark-2); margin: 0 auto var(--s7); max-width: 46ch; }
+    .gold-rule { height: 1px; max-width: 280px; margin: 0 auto var(--s7); background: linear-gradient(90deg, transparent, rgba(201, 161, 74, 0.55), transparent); }
 
     /* ── FOOTER ───────────────────────────────────────── */
-    .footer {
-      padding: var(--s7) var(--gutter);
-      text-align: center;
-      border-top: 1px solid var(--hair-dark);
-    }
-    .footer-logo {
-      font-family: var(--font-display); font-weight: 500; font-size: 19px;
-      color: var(--on-dark-2); margin-bottom: var(--s3);
-    }
+    .footer { padding: var(--s7) var(--gutter); text-align: center; border-top: 1px solid var(--hair-dark); }
+    .footer-logo { font-family: var(--font-display); font-weight: 500; font-size: 19px; color: var(--on-dark-2); margin-bottom: var(--s3); }
     .footer-logo em { font-style: italic; color: var(--gold-bright); }
-    .footer-tag { font-size: 12px; letter-spacing: 0.03em; color: var(--on-dark-2); opacity: 0.6; }
+    .footer-tagline { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: 16px; color: var(--gold-bright); margin-bottom: var(--s4); }
+    .footer-tag { font-size: 12px; letter-spacing: 0.03em; color: var(--on-dark-2); opacity: 0.6; margin-bottom: var(--s5); }
+    .footer-links { display: flex; justify-content: center; align-items: center; gap: var(--s4); flex-wrap: wrap; font-size: 13px; }
+    .footer-links a { color: var(--on-dark-2); text-decoration: none; border-bottom: 1px solid var(--hair-dark); padding-bottom: 2px; transition: color 140ms var(--ease); }
+    .footer-links a:hover { color: var(--gold-bright); }
+    .footer-links span { color: var(--on-dark-2); opacity: 0.4; }
 
     @media (prefers-reduced-motion: reduce) {
       * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
@@ -632,18 +438,19 @@
 <!-- ─── NAV (glass, fixed dark) ────────────────────────── -->
 <nav class="nav glass glass-dark">
   <a href="#" class="nav-logo">Chief <em>AI</em> Ops</a>
-  <a href="#sprint" class="btn btn-gold">Find Your First AI Workflow →</a>
+  <a href="#contact" class="btn btn-gold">Book a discovery call</a>
 </nav>
 
 <!-- ─── HERO ─────────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow eyebrow-on-dark">AI Implementation · AI Operations · AI-Native Transformation</div>
-    <h1>We Make Companies <em>AI-Native.</em></h1>
-    <p class="hero-sub">You probably don't need another AI tool. You need AI doing real work inside your business — finding the workflows costing your company the most time, money, and attention, and redesigning them around your people and systems.</p>
+    <div class="eyebrow eyebrow-on-dark">AI Implementation · AI Operations · Workflow Redesign</div>
+    <h1>Fire the <em>busywork.</em></h1>
+    <p class="hero-sub">Your team already has AI tools. We build AI into the workflows where the work actually happens, then prove what it saved.</p>
+    <p class="hero-sub">We find the workflow eating your team's week, rebuild it around AI and the systems you already use, and put it into production.</p>
     <div class="cta-row">
-      <a href="#sprint" class="btn btn-gold">Find Your First AI Workflow →</a>
-      <a href="#method" class="link-ghost">See how it works ↓</a>
+      <a href="#contact" class="btn btn-gold">Book a discovery call</a>
+      <a href="#case-study" class="link-ghost">Read the Noosa case study</a>
     </div>
   </div>
 </section>
@@ -652,30 +459,19 @@
 <section class="section bg-cream">
   <div class="inner">
     <div class="eyebrow eyebrow-on-light">The Problem</div>
-    <h2 class="sh">AI Everywhere. Transformation <em>Nowhere.</em></h2>
-
-    <div class="problem-grid">
-      <div>
-        <div class="problem-copy">
-          <p>Your company probably already uses AI. Someone has ChatGPT. Someone else is experimenting with Claude. Your sales team bought an AI tool. Marketing added three more. An employee built a clever automation nobody else understands.</p>
-          <p>And yet the way work actually gets done hasn't changed.</p>
-        </div>
-        <ul class="problem-list">
-          <li>Customer emails still pile up</li>
-          <li>Salespeople still copy information between systems</li>
-          <li>Reports still take hours to assemble</li>
-          <li>Managers still chase people for updates</li>
-          <li>Employees still spend large parts of their day on work a machine could handle</li>
-        </ul>
-      </div>
-      <div>
-        <div class="quote-card glass glass-dark">
-          <p>"Most companies approach AI backwards. They start with the technology — which tool, which platform, which model."</p>
-          <p>"We start somewhere else."</p>
-          <strong>Where is your business losing the most time, money, or capacity right now?</strong>
-        </div>
-      </div>
+    <h2 class="sh">AI shouldn't be another <em>tab.</em></h2>
+    <div class="body-copy">
+      <p>Your employees already have ChatGPT. Maybe Claude, maybe Copilot, maybe six other tools someone expensed last quarter.</p>
+      <p>And they're still doing this:</p>
     </div>
+    <ul class="dash-list">
+      <li>Answering the same customer questions from scratch, one email at a time</li>
+      <li>Copying call notes into the CRM, then into a proposal, then into a follow-up</li>
+      <li>Building reports out of 15 open browser tabs</li>
+      <li>Chasing coworkers for updates buried in someone else's inbox</li>
+      <li>Moving information between systems by hand, all day</li>
+    </ul>
+    <p class="closer">The tools changed. The work didn't. That's the gap we close.</p>
   </div>
 </section>
 
@@ -683,42 +479,85 @@
 <section class="section bg-paper">
   <div class="inner">
     <div class="eyebrow eyebrow-on-light">Our Approach</div>
-    <h2 class="sh">Stop Adding AI to <em>Broken</em> Workflows.</h2>
+    <h2 class="sh">Most companies start with the tool. We start with the <em>leak.</em></h2>
     <div class="manifesto-body">
-      <p>Find that workflow first. Understand how it actually works. Measure the bottlenecks. Then redesign it from the ground up for a world where humans, AI agents, automation, and your existing software work together.</p>
-      <blockquote class="pull-quote">That's how companies become AI-native. Not by buying more AI. By changing how the work gets done.</blockquote>
-      <p>You don't need a six-month AI transformation project. You need one meaningful win. A workflow your employees touch every day. A workflow management already knows is slow. <strong>A workflow where the economics are obvious.</strong></p>
-      <p>Pick the right workflow, rebuild it properly, and suddenly AI stops being an experiment. It becomes infrastructure.</p>
+      <p>"Which platform?" "Which model?" "Should we build an agent?" Our first question is different: where is your business losing the most time, money, or capacity right now?</p>
+      <p>Find that workflow. Map how it really runs, not how the SOP says it runs. Then rebuild it so people, AI, automation, and your software each handle the part they're best at.</p>
+      <blockquote class="pull-quote">Get that one right and AI stops being an experiment. It becomes part of how the company runs.</blockquote>
+      <p>Skip the six-month transformation program. Start with one win your CFO can see: <strong>a workflow your team touches every day, that management already knows is slow, where the math is obvious.</strong></p>
+    </div>
+    <div class="mini-cta" style="text-align:left;margin-top:var(--s6);">
+      <a href="#contact" class="btn btn-gold">Book a discovery call</a>
     </div>
   </div>
 </section>
 
-<!-- ─── USE CASES ─────────────────────────────────────── -->
+<!-- ─── WORKFLOWS ─────────────────────────────────────── -->
 <section class="section bg-cream-2">
   <div class="inner-wide">
-    <div class="eyebrow eyebrow-on-light">What AI-Native Looks Like</div>
-    <h2 class="sh">Real Workflows, <em>Redesigned.</em></h2>
+    <div class="eyebrow eyebrow-on-light">What a Rebuilt Workflow Looks Like</div>
+    <h2 class="sh">What a <em>rebuilt</em> workflow looks like</h2>
     <div class="card-grid">
       <div class="flat-card">
         <div class="tag">Customer Service</div>
-        <h3>Triage, draft, route — before a human reads it.</h3>
-        <p>Incoming messages are classified automatically. The system identifies the problem, retrieves company knowledge, drafts the appropriate response, and routes unusual or high-risk cases to a human. Your team reviews instead of starting from scratch.</p>
+        <h3>Triage and drafting done before anyone opens the email</h3>
+        <div class="wf-row">
+          <span class="wf-label">Before</span>
+          <p>An employee reads the email, figures out the category, searches for the answer, writes a reply, rereads it, and sends. At Noosa Pest Management, that took 10 to 15 minutes per email.</p>
+        </div>
+        <div class="wf-row">
+          <span class="wf-label">After</span>
+          <p>AI classifies the message, pulls the right company information, and drafts the reply. Unusual or high-risk cases go straight to a person. At Noosa, a team member now reviews and sends in under 2 minutes.</p>
+        </div>
+        <p class="wf-change"><strong>The change:</strong> Your team edits drafts instead of starting from scratch.</p>
       </div>
+
       <div class="flat-card">
         <div class="tag">Sales</div>
-        <h3>Call ends. CRM is already updated.</h3>
-        <p>Meeting information is captured. The CRM is updated. Follow-up is drafted. Relevant research is gathered. A proposal can be assembled from approved company information. The salesperson focuses on selling.</p>
+        <h3>The call ends and the CRM is already updated</h3>
+        <div class="wf-row">
+          <span class="wf-label">Before</span>
+          <p>Notes sit in a notebook until someone remembers the CRM. The rep writes the follow-up, digs up materials, and assembles the proposal by hand.</p>
+        </div>
+        <div class="wf-row">
+          <span class="wf-label">After</span>
+          <p>The call is captured, the CRM updates itself, the follow-up is drafted, account research is attached, and the proposal comes together from approved company language. The rep reviews and personalizes.</p>
+        </div>
+        <p class="wf-change"><strong>The change:</strong> Salespeople get their afternoons back for selling.</p>
       </div>
+
       <div class="flat-card">
         <div class="tag">Research &amp; Reporting</div>
-        <h3>First-pass assembly in minutes, not hours.</h3>
-        <p>Instead of 15 tabs and a manual assembly process, specialized AI systems handle much of the research and first-pass compilation. Your team reviews the evidence, applies judgment, and makes the decisions.</p>
+        <h3>The first draft builds itself</h3>
+        <div class="wf-row">
+          <span class="wf-label">Before</span>
+          <p>Fifteen browser tabs. Copy, paste, format, check, repeat.</p>
+        </div>
+        <div class="wf-row">
+          <span class="wf-label">After</span>
+          <p>AI handles the gathering, first-pass compilation, and formatting. Your analyst reviews the evidence and makes the call.</p>
+        </div>
+        <p class="wf-change"><strong>The change:</strong> Your team does the thinking. AI does the gathering.</p>
       </div>
+
       <div class="flat-card">
         <div class="tag">Operations</div>
-        <h3>Humans stop acting like middleware.</h3>
-        <p>Information moves system to system automatically. Requests get routed. Approvals get triggered. Logs get created. Exceptions get escalated. People spend less time routing and more time deciding.</p>
+        <h3>People stop acting as middleware</h3>
+        <div class="wf-row">
+          <span class="wf-label">Before</span>
+          <p>A request arrives, gets forwarded, waits for a reply, gets retyped into another system, confirmed, and logged by hand.</p>
+        </div>
+        <div class="wf-row">
+          <span class="wf-label">After</span>
+          <p>Requests route themselves, approvals trigger, systems update, confirmations go out, and logs write themselves. People only see the exceptions.</p>
+        </div>
+        <p class="wf-change"><strong>The change:</strong> Less routing. More deciding.</p>
       </div>
+    </div>
+
+    <div class="mini-cta">
+      <p>Recognize one of these?</p>
+      <a href="#contact" class="btn btn-gold">Book a discovery call</a>
     </div>
   </div>
 </section>
@@ -727,69 +566,44 @@
 <section class="section bg-navy" id="method">
   <div class="inner-wide">
     <div class="eyebrow eyebrow-on-dark">The Chief AI Ops Method™</div>
-    <h2 class="sh">We begin with the work, not the <em>technology.</em></h2>
+    <h2 class="sh">We begin with the work. The technology comes later.</h2>
 
     <div class="method-flow">
       <div class="method-step">
         <div class="method-num">1</div>
-        <div class="method-label">Find It</div>
-        <div class="method-desc">Identify the workflow with the highest operational or financial return</div>
+        <div class="method-label">Find it</div>
+        <div class="method-desc">Identify the workflow with the biggest financial or operational return, not just the one AI could touch.</div>
       </div>
       <div class="method-step">
         <div class="method-num">2</div>
-        <div class="method-label">Redesign It</div>
-        <div class="method-desc">Map the process and rebuild it around humans + AI + automation + systems</div>
+        <div class="method-label">Redesign it</div>
+        <div class="method-desc">Map the current process, then hand each step to whoever does it best: humans keep judgment and accountability, AI takes research and drafting, automation handles routing and logging, your existing systems store and move the data.</div>
       </div>
       <div class="method-step">
         <div class="method-num">3</div>
-        <div class="method-label">Build It</div>
-        <div class="method-desc">Create AI agents, knowledge bases, integrations, and approval logic</div>
+        <div class="method-label">Build and ship it</div>
+        <div class="method-desc">AI agents, knowledge base, integrations, human approval checkpoints, testing, deployment, and training.</div>
       </div>
       <div class="method-step">
         <div class="method-num">4</div>
-        <div class="method-label">Ship It</div>
-        <div class="method-desc">Move out of the demo environment and into day-to-day operations</div>
-      </div>
-      <div class="method-step">
-        <div class="method-num">5</div>
-        <div class="method-label">Prove It</div>
-        <div class="method-desc">Measure time saved, response rates, throughput, and capacity created</div>
-      </div>
-      <div class="method-step">
-        <div class="method-num">6</div>
-        <div class="method-label">Train It</div>
-        <div class="method-desc">Teach your team to supervise AI, review outputs, and handle exceptions</div>
-      </div>
-      <div class="method-step">
-        <div class="method-num">7</div>
-        <div class="method-label">Compound It</div>
-        <div class="method-desc">One successful workflow becomes the operating blueprint for the next</div>
+        <div class="method-label">Prove it</div>
+        <div class="method-desc">We record the baseline before we build, then measure the change. If we can't show where the money comes from, we don't automate the workflow.</div>
       </div>
     </div>
 
-    <div class="phil-row">
-      <div class="phil-cell">
-        <div class="phil-head">Not Agents for Sale</div>
-        <div class="phil-body">Nobody wakes up wanting "a six-agent RAG workflow." You want customer inquiries handled faster. The technology isn't the product. The result is.</div>
-      </div>
-      <div class="phil-cell">
-        <div class="phil-head">Human + AI, Not Human vs. AI</div>
-        <div class="phil-body">The machine does more of the machine work. Your people do more of the work you hired people to do. That's the design principle behind every implementation.</div>
-      </div>
-      <div class="phil-cell">
-        <div class="phil-head">Measured or It Didn't Happen</div>
-        <div class="phil-body">We establish the baseline before we build. If we can't explain where the economic value comes from, we shouldn't automate the workflow.</div>
-      </div>
+    <div class="mini-cta">
+      <p>The first workflow becomes the blueprint for the next one.</p>
+      <a href="#contact" class="btn btn-gold">Book a discovery call</a>
     </div>
   </div>
 </section>
 
 <!-- ─── CASE STUDY ─────────────────────────────────────── -->
-<section class="section bg-navy-deep">
+<section class="section bg-navy-deep" id="case-study">
   <div class="inner">
-    <div class="eyebrow eyebrow-on-dark">First Implementation</div>
-    <h2 class="sh">From 10–15 Minutes Per Email to Under <em>2 Minutes.</em></h2>
-    <p style="font-size:13px;color:var(--on-dark-2);letter-spacing:0.04em;text-transform:uppercase;margin-top:6px;opacity:0.7;">Noosa Pest Management</p>
+    <div class="eyebrow eyebrow-on-dark">Case Study</div>
+    <p style="font-size:13px;color:var(--on-dark-2);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:var(--s3);opacity:0.7;">Noosa Pest Management</p>
+    <h2 class="sh">Customer emails took 10 to 15 minutes each. Now they take <em>under 2.</em></h2>
 
     <div class="kpi-row">
       <div class="kpi-cell">
@@ -798,116 +612,182 @@
       </div>
       <div class="kpi-cell">
         <span class="kpi-num">20–25<sub>hrs</sub></span>
-        <span class="kpi-label">Team capacity<br>created per week</span>
+        <span class="kpi-label">Team capacity created per week<span class="kpi-est">(estimated)</span></span>
       </div>
       <div class="kpi-cell">
         <span class="kpi-num">6</span>
-        <span class="kpi-label">Specialized AI agents<br>operating in production</span>
+        <span class="kpi-label">Specialized AI agents in production</span>
       </div>
       <div class="kpi-cell">
-        <span class="kpi-num">$176K</span>
-        <span class="kpi-label">ARR protected through<br>faster emergency response</span>
+        <span class="kpi-num">$176.8K</span>
+        <span class="kpi-label">ARR protected via faster emergency response<span class="kpi-est">(estimated)</span></span>
       </div>
     </div>
 
     <div class="case-body">
-      <p>A high-volume customer email workflow required employees to repeatedly read incoming requests, determine the type of problem, find the appropriate information, formulate a response, and handle urgent cases correctly — every single email, every single day.</p>
-      <p>The redesigned system uses six specialized AI agents to process approximately 20 to 30 customer emails each day. <strong>The important part isn't that six AI agents were built.</strong> The important part is that a slow business process became faster, measurable, and substantially less dependent on repetitive human work.</p>
+      <p>Noosa's team handled 20 to 30 customer emails a day by hand. Every one meant reading the request, figuring out the problem, finding the right information, writing a reply, and making sure urgent cases didn't sit in the queue.</p>
+      <p>The rebuilt workflow splits the job across six agents:</p>
+    </div>
+    <ul class="agent-list">
+      <li><strong>Sorter.</strong> Reads each email and sets its urgency.</li>
+      <li><strong>Tone reader.</strong> Reads the customer's tone and recommends how to respond.</li>
+      <li><strong>Knowledge agent.</strong> Pulls company policies, services, pricing, and service areas.</li>
+      <li><strong>Availability checker.</strong> Checks pest identification and technician availability.</li>
+      <li><strong>Drafter.</strong> Writes the reply in Noosa's voice.</li>
+      <li><strong>QA agent.</strong> Checks the draft for accuracy and tone before a person ever sees it.</li>
+    </ul>
+    <div class="case-body">
+      <p>A team member reviews the draft, edits if needed, and sends.</p>
+    </div>
+    <a href="#case-study" class="link-ghost">Read the full case study</a>
+  </div>
+</section>
+
+<!-- ─── PHILOSOPHY ─────────────────────────────────────── -->
+<section class="section bg-paper">
+  <div class="inner">
+    <h2 class="sh">Nobody wants a <em>six-agent</em> RAG workflow.</h2>
+    <div class="manifesto-body">
+      <p>You want customer inquiries answered before the customer calls a competitor. Salespeople selling. Reports done by lunch, with a human still checking the sources.</p>
+      <p>The agents are how we get you there. <strong>You're paying for the result.</strong></p>
+    </div>
+
+    <h2 class="sh" style="margin-top:var(--s8);">The machine does the machine <em>work.</em></h2>
+    <div class="manifesto-body">
+      <p>The best AI workflows are rarely fully autonomous, and they shouldn't be. AI takes the repetitive research, drafting, classification, and routing. Your people keep the judgment, the relationships, and the final call when the stakes are high. Every build is designed around that split.</p>
+    </div>
+    <a href="#contact" class="btn btn-gold">Book a discovery call</a>
+  </div>
+</section>
+
+<!-- ─── FAQ ────────────────────────────────────────────── -->
+<section class="section bg-cream">
+  <div class="inner">
+    <div class="eyebrow eyebrow-on-light">Why Not Just…</div>
+    <h2 class="sh">Why not just…</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>…hire a freelancer?</h3>
+        <p>A freelancer builds what you spec, and most companies don't know what to spec yet. The Discovery Sprint settles that first: which workflow is worth rebuilding, what the new version looks like, and what it should save. Then we build to that plan and measure against it.</p>
+      </div>
+      <div class="faq-item">
+        <h3>…hand it to our IT team?</h3>
+        <p>Your IT team keeps your systems running and secure, and we need them. We bring the workflow redesign and the agent build, and we work inside the systems and permissions they already manage.</p>
+      </div>
+      <div class="faq-item">
+        <h3>…buy an AI platform?</h3>
+        <p>You probably own one already. Someone still has to redesign the workflow, connect it to your data, and get your team using it. That's the job.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if it doesn't work?</h3>
+        <p>Your first commitment is $5,000 and seven business days. If the Sprint shows a workflow isn't worth automating, the plan says so, and you've spent $5,000 instead of signing a much bigger contract.</p>
+      </div>
+    </div>
+    <div class="mini-cta">
+      <a href="#contact" class="btn btn-gold">Book a discovery call</a>
     </div>
   </div>
 </section>
 
 <!-- ─── SERVICES ───────────────────────────────────────── -->
-<section class="section bg-paper" id="sprint">
+<section class="section bg-paper" id="services">
   <div class="inner-wide">
     <div class="eyebrow eyebrow-on-light">Services</div>
-    <h2 class="sh">Two Ways to Work <em>Together.</em></h2>
+    <h2 class="sh">Two ways to work <em>together.</em></h2>
 
     <div class="services-grid">
-      <div class="svc-card">
+      <div class="svc-card" id="discovery">
         <div class="svc-tag">Step One</div>
         <h3>AI Workflow Discovery Sprint</h3>
-        <p>Before we build anything, we find the right problem. A focused analysis of one important workflow inside your company — delivered within 7 business days. The plan is yours whether you hire us to build it or not.</p>
-        <div class="svc-price">$5,000 <span>fixed fee</span></div>
+        <p>Before we build anything, we make sure we're solving the right problem. You walk away with:</p>
         <ul class="svc-list">
-          <li>One workflow, mapped end-to-end</li>
-          <li>Bottleneck and current-cost analysis</li>
-          <li>AI-native redesign architecture</li>
-          <li>Human and AI responsibility design</li>
-          <li>ROI projection and implementation roadmap</li>
-          <li>Delivered within 7 business days</li>
-          <li>Yours to keep, regardless of next steps</li>
+          <li>A current-state map of the workflow, with bottlenecks marked</li>
+          <li>The redesigned version, showing what humans, AI, and automation each handle</li>
+          <li>Projected time savings, cost reduction, and capacity created</li>
+          <li>An implementation roadmap with phases, timeline, and technical requirements</li>
+          <li>A fixed quote to build it</li>
         </ul>
-        <a href="#contact" class="btn-outline">Apply for a Discovery Sprint</a>
+        <div class="svc-price">$5,000 <span>fixed fee</span></div>
+        <p class="svc-note">One workflow. Delivered in 7 business days. The plan is yours whether you hire us to build it or not.</p>
+        <a href="#contact" class="btn-outline">Book a discovery call</a>
       </div>
 
-      <div class="svc-card">
+      <div class="svc-card" id="implementation">
         <div class="svc-tag">Step Two</div>
         <h3>AI Workflow Implementation</h3>
-        <p>We take the redesigned workflow from plan to running system — AI agents, knowledge base, integrations, business rules, human approvals, testing, documentation, deployment, and employee training.</p>
-        <div class="svc-price">From $8,000 <span>depending on complexity</span></div>
+        <p>We take the redesigned workflow from plan to running system: AI agents, knowledge base, integrations, human approval logic, testing, documentation, deployment, employee training, and support while the system settles in.</p>
         <ul class="svc-list">
-          <li>Departmental workflows: 4–6 weeks</li>
-          <li>Cross-functional workflows: 6–8 weeks</li>
-          <li>Agent development and system integration</li>
-          <li>Testing with real scenarios before launch</li>
-          <li>Employee training included in every project</li>
-          <li>Stabilization support post-launch</li>
+          <li>Departmental workflow. One department, a handful of integrations. Usually 4 to 6 weeks. Starts at $8,000.</li>
+          <li>Cross-department workflow. Multiple teams and systems. Usually 6 to 8 weeks. Quoted after the Discovery Sprint.</li>
         </ul>
-        <a href="#contact" class="btn-outline">Learn About Implementation</a>
+        <a href="#discovery" class="btn-outline">Learn more about implementation</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ─── ABOUT ──────────────────────────────────────────── -->
+<section class="section bg-cream-2">
+  <div class="inner-narrow">
+    <div class="eyebrow eyebrow-on-light">Who's Behind Chief AI Ops</div>
+    <h2 class="sh">Who's behind Chief AI Ops</h2>
+    <div class="bio-body">
+      <p>Chief AI Ops helps growing companies close the gap between AI adoption and actual workflow change. Most businesses already have AI tools. We rebuild the workflows underneath so the tools actually save time and money.</p>
+      <p>We start with one high-volume workflow, redesign it around what humans, AI, and automation each do best, build it into production, and measure what it saved. <strong>The first workflow becomes the blueprint for the next one.</strong></p>
+      <p>Our work fits companies in professional services, accounting, recruiting, marketing agencies, and B2B services. Anywhere teams spend their week on email, research, reporting, sales admin, and moving information between systems by hand.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ─── PROCESS ────────────────────────────────────────── -->
-<section class="section bg-cream">
+<section class="section bg-paper">
   <div class="inner-wide">
     <div class="eyebrow eyebrow-on-light">What Happens Next</div>
-    <h2 class="sh">Four Steps. No <em>Giant</em> Transformation Contract.</h2>
+    <h2 class="sh">What happens next</h2>
     <div class="process-grid">
       <div class="process-cell">
         <div class="process-n">01</div>
-        <h3>Book a Discovery Call</h3>
-        <p>We discuss where work is getting stuck, what your team is doing manually, and whether there's a workflow worth investigating.</p>
+        <h3>Book a discovery call</h3>
+        <p>We talk through where work is getting stuck and whether there's a workflow worth investigating.</p>
       </div>
       <div class="process-cell">
         <div class="process-n">02</div>
-        <h3>Choose Your First Workflow</h3>
-        <p>If there's a strong fit, we scope a single workflow for an AI Workflow Discovery Sprint.</p>
+        <h3>Choose your first workflow</h3>
+        <p>If there's a fit, we scope one workflow for a Discovery Sprint.</p>
       </div>
       <div class="process-cell">
         <div class="process-n">03</div>
-        <h3>Get Your Redesign Plan</h3>
-        <p>Within 7 business days: current workflow, AI-native alternative, economics, technical requirements, and the implementation path.</p>
+        <h3>Get your redesign plan</h3>
+        <p>Within 7 business days, you have the current workflow, the redesigned version, the economics, and the build path.</p>
       </div>
       <div class="process-cell">
         <div class="process-n">04</div>
-        <h3>Decide Whether to Build</h3>
-        <p>Take the plan and implement it yourself. Give it to your internal team. Hire another partner. Or have Chief AI Ops build it.</p>
+        <h3>Decide whether to build</h3>
+        <p>Do it yourself, hand it to your internal team, bring in another partner, or have us build it. No giant transformation contract.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ─── WHO ───────────────────────────────────────────── -->
-<section class="section bg-paper">
+<section class="section bg-cream">
   <div class="inner-narrow">
     <div class="eyebrow eyebrow-on-light">Who This Is For</div>
-    <h2 class="sh">Growing companies where operational complexity has started <em>outrunning</em> the way work gets done.</h2>
+    <h2 class="sh">Growing companies where the work has gotten more <em>complicated</em> than the way it gets done.</h2>
 
     <div class="who-body" style="margin-top:var(--s6);">
-      <p>Especially professional services firms, accounting businesses, recruiting companies, and marketing agencies — teams spending significant time on email, research, reporting, sales administration, onboarding, document creation, and repetitive knowledge work.</p>
+      <p>It fits especially well in professional services, accounting, recruiting, marketing agencies, and B2B service companies, where teams spend big chunks of the week on email, research, reporting, sales admin, onboarding, and documents.</p>
+      <p>You're a fit if you have:</p>
     </div>
 
     <div class="criteria-list">
-      <div class="criteria-row">You don't need an AI department or a chief AI officer</div>
-      <div class="criteria-row">20 to 500 employees</div>
-      <div class="criteria-row">Executive sponsorship — a CEO or COO who can champion the change</div>
-      <div class="criteria-row">Access to the people and systems involved in the workflow</div>
-      <div class="criteria-row">Willingness to change how the work gets done</div>
+      <div class="criteria-row">A workflow with real volume behind it</div>
+      <div class="criteria-row">A CEO or COO willing to sponsor the change</div>
+      <div class="criteria-row">Access to the people and systems involved</div>
+      <div class="criteria-row">An appetite to change how the work gets done</div>
     </div>
 
+    <p class="who-body" style="max-width:58ch;">You don't need an AI department, a chief AI officer, or anyone technical on staff.</p>
     <p class="who-quote">"We know AI matters. We just don't know what to do with it."</p>
     <p style="font-size:16px;color:var(--ink-2);margin-top:var(--s2);">That's exactly where we start.</p>
   </div>
@@ -918,16 +798,24 @@
   <div class="cta-inner">
     <div class="eyebrow eyebrow-on-dark" style="margin-bottom:var(--s6);">Start Here</div>
     <div class="gold-rule"></div>
-    <h2>The goal isn't more AI. It's a <em>better</em> company.</h2>
-    <p>Start with one workflow. Prove the economics. Learn what works inside your organization. Then decide whether another workflow deserves the same treatment.</p>
-    <a href="https://calendly.com" class="btn btn-gold" style="font-size:15px;padding:16px 34px;">Find Your First AI Workflow →</a>
+    <h2>Start with <em>one</em> workflow.</h2>
+    <p>New models will ship. Today's hot tool will get replaced. We build around your workflows, your knowledge, and your economics, so the system outlasts the tool cycle. Prove one workflow. Measure it. Then decide whether the next one deserves the same treatment.</p>
+    <a href="#" class="btn btn-gold" style="font-size:15px;padding:16px 34px;">Book a discovery call</a>
   </div>
 </section>
 
 <!-- ─── FOOTER ─────────────────────────────────────────── -->
 <footer class="footer bg-navy-black">
   <div class="footer-logo">Chief <em>AI</em> Ops</div>
-  <p class="footer-tag">We Make Companies AI-Native &nbsp;·&nbsp; AI Implementation &nbsp;·&nbsp; AI Operations &nbsp;·&nbsp; AI-Native Transformation</p>
+  <div class="footer-tagline">Fire the busywork.</div>
+  <p class="footer-tag">AI implementation &nbsp;·&nbsp; AI operations &nbsp;·&nbsp; Workflow redesign</p>
+  <div class="footer-links">
+    <a href="#contact">Book a discovery call</a>
+    <span>|</span>
+    <a href="#case-study">Read the Noosa case study</a>
+    <span>|</span>
+    <span style="opacity:0.5;">LinkedIn</span>
+  </div>
 </footer>
 
 </body>
