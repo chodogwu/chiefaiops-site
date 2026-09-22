@@ -382,11 +382,46 @@
     .btn-outline:hover { border-color: var(--gold); color: var(--gold-deep); }
 
     /* ── FOUNDER ──────────────────────────────────────── */
-    .bio-body p { font-size: 17px; line-height: 1.8; color: var(--ink-2); margin-bottom: var(--s5); }
-    .bio-body strong { font-weight: 700; color: var(--ink); }
-    .bio-name { font-family: var(--font-display); font-weight: 500; font-size: 26px; color: var(--ink); margin-bottom: var(--s5); }
-    .bio-name em { font-style: italic; color: var(--gold-deep); }
-    .credibility-line { font-size: 13px; color: var(--ink-2); opacity: 0.8; font-style: italic; max-width: none; margin-top: var(--s2); }
+    .founder-card {
+      display: flex; align-items: center; gap: var(--s7);
+      border-radius: var(--r-lg); padding: var(--s7); margin-top: var(--s6);
+    }
+    @media (max-width: 560px) { .founder-card { flex-direction: column; text-align: center; gap: var(--s5); } }
+    .founder-photo {
+      width: 128px; height: 128px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .founder-name { font-family: var(--font-display); font-weight: 500; font-size: 24px; color: var(--on-dark); margin-bottom: 2px; }
+    .founder-title { font-size: 13px; color: var(--gold-bright); letter-spacing: 0.04em; margin-bottom: var(--s4); }
+    .read-bio-btn {
+      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-text);
+      font-size: 13px; font-weight: 700; color: var(--gold-bright); background: none;
+      border: none; border-bottom: 1px solid rgba(240,199,102,0.4); padding: 0 0 2px;
+      cursor: pointer; transition: border-color 140ms var(--ease), color 140ms var(--ease);
+    }
+    .read-bio-btn:hover { color: var(--on-dark); border-color: var(--on-dark); }
+
+    .bio-modal {
+      position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+      padding: var(--s5); background: rgba(15, 22, 38, 0.72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    }
+    .bio-modal[hidden] { display: none; }
+    .bio-modal-panel {
+      position: relative; max-width: 620px; width: 100%; max-height: 85vh; overflow-y: auto;
+      background: var(--paper); border-radius: var(--r-lg); padding: var(--s7); border: 1px solid var(--hair);
+      box-shadow: 0 30px 60px -20px rgba(5,9,18,0.5);
+    }
+    .bio-modal-close {
+      position: absolute; top: var(--s5); right: var(--s5); width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--hair); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .bio-modal-close:hover { border-color: var(--gold); color: var(--gold-deep); }
+    .bio-modal-body p { font-size: 16px; line-height: 1.75; color: var(--ink-2); margin-bottom: var(--s4); max-width: none; }
+    .bio-modal-body strong { font-weight: 700; color: var(--ink); }
+    .bio-modal-body h3 { font-family: var(--font-display); font-weight: 500; font-size: 24px; color: var(--ink); margin-bottom: var(--s2); padding-right: var(--s7); }
+    .bio-modal-body .bio-title { font-size: 13px; color: var(--gold-deep); margin-bottom: var(--s5); }
+    .credibility-line { font-size: 13px; color: var(--ink-2); opacity: 0.8; font-style: italic; max-width: none; margin-top: var(--s5); }
 
     /* ── PROCESS ──────────────────────────────────────── */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); margin-top: var(--s7); }
@@ -736,14 +771,17 @@
   <div class="inner-narrow">
     <div class="eyebrow eyebrow-on-light">Founder</div>
     <h2 class="sh">Who's behind Chief AI Ops?</h2>
-    <div class="bio-name">Chi Odogwu</div>
-    <div class="bio-body">
-      <p>Chief AI Ops was founded by Chi Odogwu, an operator, entrepreneur, educator, and business journalist whose career has crossed finance, consulting, media, and technology.</p>
-      <p>Chi's background includes work in finance and consulting, including PwC, more than six years teaching and tutoring business and finance, and byline credits in Business Insider, Forbes Middle East, Fox Business, SUCCESS, and CNET.</p>
-      <p>That background shapes how Chief AI Ops approaches AI. We start with the business, not the model or the platform getting attention this month, then work backward into the technology.</p>
-      <p><strong>Chief AI Ops exists to close the gap between companies having access to AI and AI actually changing how their businesses run.</strong></p>
+
+    <div class="founder-card glass glass-dark">
+      <img class="founder-photo" src="images/chi-odogwu.png" alt="Chi Odogwu">
+      <div>
+        <div class="founder-name">Chi Odogwu</div>
+        <div class="founder-title">Founder &amp; Managing Partner</div>
+        <button type="button" class="read-bio-btn" onclick="document.getElementById('bio-modal').removeAttribute('hidden')">Read bio &rarr;</button>
+      </div>
     </div>
-    <div class="mini-cta" style="text-align:left;">
+
+    <div class="mini-cta" style="text-align:left;margin-top:var(--s6);">
       <a href="#discovery" class="btn btn-gold">Find Your First Workflow</a>
     </div>
   </div>
@@ -821,6 +859,32 @@
   </div>
   <p style="font-size:11px;color:var(--on-dark-2);opacity:0.4;margin-top:var(--s6);">&copy; 2026 Chief AI Ops. All rights reserved.</p>
 </footer>
+
+<!-- ─── FOUNDER BIO MODAL ──────────────────────────────── -->
+<div class="bio-modal" id="bio-modal" hidden onclick="if(event.target.id==='bio-modal')this.setAttribute('hidden','')">
+  <div class="bio-modal-panel">
+    <button type="button" class="bio-modal-close" aria-label="Close" onclick="document.getElementById('bio-modal').setAttribute('hidden','')">&times;</button>
+    <h3>Chi Odogwu</h3>
+    <div class="bio-title">Founder &amp; Managing Partner, Chief AI Ops</div>
+    <div class="bio-modal-body">
+      <p>Chi Odogwu is an entrepreneur, business journalist, and executive interviewer working at the intersection of business operations, media, and applied AI.</p>
+      <p>For more than a decade, he has interviewed founders, executives, and business leaders, including CEOs at companies like AFLAC and Siemens, for Business Insider, Forbes Middle East, Fox Business, SUCCESS, and CNET, including Business Insider's Power Hours column, where he examines how senior executives actually operate, make decisions, and run complex organizations.</p>
+      <p>Chi also hosts The Bulletproof Entrepreneur podcast, interviewing entrepreneurs and business leaders about how companies are built, financed, and grown.</p>
+      <p>Before moving into media and entrepreneurship, Chi worked across finance and consulting, including PwC, and has taught business and finance at the university and college level.</p>
+      <p>That mix of finance, journalism, and pattern recognition across hundreds of companies shapes how Chief AI Ops approaches AI. <strong>We don't start with the model. We start with the business.</strong> Where is time disappearing? Where is capacity being wasted? Which workflow is creating unnecessary cost? What would fixing it actually be worth? Then we work backward into the technology.</p>
+      <p><strong>Chief AI Ops exists to turn AI from something executives hear about into something their companies actually run on.</strong></p>
+      <p class="credibility-line">Writing published in Business Insider, Forbes Middle East, Fox Business, SUCCESS, and CNET.</p>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var m = document.getElementById('bio-modal');
+      if (m && !m.hasAttribute('hidden')) m.setAttribute('hidden', '');
+    }
+  });
+</script>
 
 </body>
 </html>
