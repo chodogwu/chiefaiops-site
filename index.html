@@ -212,6 +212,7 @@
     .hero-sub + .hero-sub { margin-bottom: var(--s7); }
 
     .cta-row { display: flex; gap: var(--s5); flex-wrap: wrap; align-items: center; margin-bottom: var(--s6); }
+    .hero-caption { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-2); opacity: 0.65; max-width: none; }
 
     .link-ghost {
       display: inline-flex;
@@ -444,14 +445,15 @@
 <!-- ─── HERO ─────────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow eyebrow-on-dark">AI Implementation · AI Operations · Workflow Redesign</div>
-    <h1>Fire the <em>busywork.</em></h1>
+    <div class="eyebrow eyebrow-on-dark">Fire the busywork</div>
+    <h1>Chief <em>AI</em> Ops</h1>
     <p class="hero-sub">Your team already has AI tools. We build AI into the workflows where the work actually happens, then prove what it saved.</p>
     <p class="hero-sub">We find the workflow eating your team's week, rebuild it around AI and the systems you already use, and put it into production.</p>
     <div class="cta-row">
       <a href="#contact" class="btn btn-gold">Book a discovery call</a>
       <a href="#case-study" class="link-ghost">Read the Noosa case study</a>
     </div>
+    <p class="hero-caption">AI implementation &nbsp;·&nbsp; AI operations &nbsp;·&nbsp; Workflow redesign</p>
   </div>
 </section>
 
@@ -462,15 +464,9 @@
     <h2 class="sh">AI shouldn't be another <em>tab.</em></h2>
     <div class="body-copy">
       <p>Your employees already have ChatGPT. Maybe Claude, maybe Copilot, maybe six other tools someone expensed last quarter.</p>
-      <p>And they're still doing this:</p>
+      <p>They're still doing this:</p>
+      <p>Answering the same customer questions from scratch, one email at a time. Copying call notes into the CRM, then into a proposal, then into a follow-up. Building reports out of 15 open browser tabs. Chasing coworkers for updates buried in someone else's inbox. Moving information between systems by hand, all day.</p>
     </div>
-    <ul class="dash-list">
-      <li>Answering the same customer questions from scratch, one email at a time</li>
-      <li>Copying call notes into the CRM, then into a proposal, then into a follow-up</li>
-      <li>Building reports out of 15 open browser tabs</li>
-      <li>Chasing coworkers for updates buried in someone else's inbox</li>
-      <li>Moving information between systems by hand, all day</li>
-    </ul>
     <p class="closer">The tools changed. The work didn't. That's the gap we close.</p>
   </div>
 </section>
@@ -483,8 +479,7 @@
     <div class="manifesto-body">
       <p>"Which platform?" "Which model?" "Should we build an agent?" Our first question is different: where is your business losing the most time, money, or capacity right now?</p>
       <p>Find that workflow. Map how it really runs, not how the SOP says it runs. Then rebuild it so people, AI, automation, and your software each handle the part they're best at.</p>
-      <blockquote class="pull-quote">Get that one right and AI stops being an experiment. It becomes part of how the company runs.</blockquote>
-      <p>Skip the six-month transformation program. Start with one win your CFO can see: <strong>a workflow your team touches every day, that management already knows is slow, where the math is obvious.</strong></p>
+      <p>Skip the six-month transformation program. Start with one win your CFO can see. A workflow your team touches every day. One management already knows is slow. Where the math is obvious. <strong>Get that one right and AI stops being an experiment. It becomes part of how the company runs.</strong></p>
     </div>
     <div class="mini-cta" style="text-align:left;margin-top:var(--s6);">
       <a href="#contact" class="btn btn-gold">Book a discovery call</a>
@@ -521,7 +516,7 @@
         </div>
         <div class="wf-row">
           <span class="wf-label">After</span>
-          <p>The call is captured, the CRM updates itself, the follow-up is drafted, account research is attached, and the proposal comes together from approved company language. The rep reviews and personalizes.</p>
+          <p>The call is captured. The CRM updates itself. The follow-up is drafted. Account research is attached. The proposal comes together from approved company language. The rep reviews and personalizes.</p>
         </div>
         <p class="wf-change"><strong>The change:</strong> Salespeople get their afternoons back for selling.</p>
       </div>
@@ -549,7 +544,7 @@
         </div>
         <div class="wf-row">
           <span class="wf-label">After</span>
-          <p>Requests route themselves, approvals trigger, systems update, confirmations go out, and logs write themselves. People only see the exceptions.</p>
+          <p>Requests route themselves. Approvals trigger. Systems update. Confirmations go out. Logs write themselves. People only see the exceptions.</p>
         </div>
         <p class="wf-change"><strong>The change:</strong> Less routing. More deciding.</p>
       </div>
@@ -572,12 +567,12 @@
       <div class="method-step">
         <div class="method-num">1</div>
         <div class="method-label">Find it</div>
-        <div class="method-desc">Identify the workflow with the biggest financial or operational return, not just the one AI could touch.</div>
+        <div class="method-desc">Identify the workflow with the biggest financial or operational return. Not just the one AI could touch.</div>
       </div>
       <div class="method-step">
         <div class="method-num">2</div>
         <div class="method-label">Redesign it</div>
-        <div class="method-desc">Map the current process, then hand each step to whoever does it best: humans keep judgment and accountability, AI takes research and drafting, automation handles routing and logging, your existing systems store and move the data.</div>
+        <div class="method-desc">Map the current process, then hand each step to whoever does it best. Humans keep judgment and accountability. AI takes research and drafting. Automation handles routing and logging. Your existing systems store and move the data.</div>
       </div>
       <div class="method-step">
         <div class="method-num">3</div>
@@ -626,17 +621,7 @@
 
     <div class="case-body">
       <p>Noosa's team handled 20 to 30 customer emails a day by hand. Every one meant reading the request, figuring out the problem, finding the right information, writing a reply, and making sure urgent cases didn't sit in the queue.</p>
-      <p>The rebuilt workflow splits the job across six agents:</p>
-    </div>
-    <ul class="agent-list">
-      <li><strong>Sorter.</strong> Reads each email and sets its urgency.</li>
-      <li><strong>Tone reader.</strong> Reads the customer's tone and recommends how to respond.</li>
-      <li><strong>Knowledge agent.</strong> Pulls company policies, services, pricing, and service areas.</li>
-      <li><strong>Availability checker.</strong> Checks pest identification and technician availability.</li>
-      <li><strong>Drafter.</strong> Writes the reply in Noosa's voice.</li>
-      <li><strong>QA agent.</strong> Checks the draft for accuracy and tone before a person ever sees it.</li>
-    </ul>
-    <div class="case-body">
+      <p>The rebuilt workflow splits the job across six agents. One sorts each email and sets urgency. One reads the customer's tone and recommends how to respond. One pulls company policies, services, pricing, and service areas. One checks pest identification and technician availability. One drafts the reply in Noosa's voice. One checks the draft for accuracy and tone before a person ever sees it.</p>
       <p>A team member reviews the draft, edits if needed, and sends.</p>
     </div>
     <a href="#case-study" class="link-ghost">Read the full case study</a>
@@ -654,7 +639,7 @@
 
     <h2 class="sh" style="margin-top:var(--s8);">The machine does the machine <em>work.</em></h2>
     <div class="manifesto-body">
-      <p>The best AI workflows are rarely fully autonomous, and they shouldn't be. AI takes the repetitive research, drafting, classification, and routing. Your people keep the judgment, the relationships, and the final call when the stakes are high. Every build is designed around that split.</p>
+      <p>The best AI workflows are rarely fully autonomous. They shouldn't be. AI takes the repetitive research, drafting, classification, and routing. Your people keep the judgment, the relationships, and the final call when the stakes are high. Every build is designed around that split.</p>
     </div>
     <a href="#contact" class="btn btn-gold">Book a discovery call</a>
   </div>
@@ -668,11 +653,11 @@
     <div class="faq-list">
       <div class="faq-item">
         <h3>…hire a freelancer?</h3>
-        <p>A freelancer builds what you spec, and most companies don't know what to spec yet. The Discovery Sprint settles that first: which workflow is worth rebuilding, what the new version looks like, and what it should save. Then we build to that plan and measure against it.</p>
+        <p>A freelancer builds what you spec. Most companies don't know what to spec yet. The Discovery Sprint settles that first. Which workflow is worth rebuilding. What the new version looks like. What it should save. Then we build to that plan and measure against it.</p>
       </div>
       <div class="faq-item">
         <h3>…hand it to our IT team?</h3>
-        <p>Your IT team keeps your systems running and secure, and we need them. We bring the workflow redesign and the agent build, and we work inside the systems and permissions they already manage.</p>
+        <p>Your IT team keeps your systems running and secure. We need them. We bring the workflow redesign and the agent build. We work inside the systems and permissions they already manage.</p>
       </div>
       <div class="faq-item">
         <h3>…buy an AI platform?</h3>
@@ -680,7 +665,7 @@
       </div>
       <div class="faq-item">
         <h3>What if it doesn't work?</h3>
-        <p>Your first commitment is $5,000 and seven business days. If the Sprint shows a workflow isn't worth automating, the plan says so, and you've spent $5,000 instead of signing a much bigger contract.</p>
+        <p>Your first commitment is $5,000 and seven business days. If the Sprint shows a workflow isn't worth automating, the plan says so. You've spent $5,000 instead of signing a much bigger contract.</p>
       </div>
     </div>
     <div class="mini-cta">
@@ -700,13 +685,7 @@
         <div class="svc-tag">Step One</div>
         <h3>AI Workflow Discovery Sprint</h3>
         <p>Before we build anything, we make sure we're solving the right problem. You walk away with:</p>
-        <ul class="svc-list">
-          <li>A current-state map of the workflow, with bottlenecks marked</li>
-          <li>The redesigned version, showing what humans, AI, and automation each handle</li>
-          <li>Projected time savings, cost reduction, and capacity created</li>
-          <li>An implementation roadmap with phases, timeline, and technical requirements</li>
-          <li>A fixed quote to build it</li>
-        </ul>
+        <p>A current-state map of the workflow, with bottlenecks marked. The redesigned version, showing what humans, AI, and automation each handle. Projected time savings, cost reduction, and capacity created. An implementation roadmap with phases, timeline, and technical requirements. A fixed quote to build it.</p>
         <div class="svc-price">$5,000 <span>fixed fee</span></div>
         <p class="svc-note">One workflow. Delivered in 7 business days. The plan is yours whether you hire us to build it or not.</p>
         <a href="#contact" class="btn-outline">Book a discovery call</a>
@@ -715,10 +694,10 @@
       <div class="svc-card" id="implementation">
         <div class="svc-tag">Step Two</div>
         <h3>AI Workflow Implementation</h3>
-        <p>We take the redesigned workflow from plan to running system: AI agents, knowledge base, integrations, human approval logic, testing, documentation, deployment, employee training, and support while the system settles in.</p>
+        <p>We take the redesigned workflow from plan to running system. AI agents, knowledge base, integrations, human approval logic, testing, documentation, deployment, employee training, and support while the system settles in.</p>
         <ul class="svc-list">
-          <li>Departmental workflow. One department, a handful of integrations. Usually 4 to 6 weeks. Starts at $8,000.</li>
-          <li>Cross-department workflow. Multiple teams and systems. Usually 6 to 8 weeks. Quoted after the Discovery Sprint.</li>
+          <li>Departmental workflow: one department, a handful of integrations. Usually 4 to 6 weeks. Starts at $8,000.</li>
+          <li>Cross-department workflow: multiple teams and systems. Usually 6 to 8 weeks. Quoted after the Discovery Sprint.</li>
         </ul>
         <a href="#discovery" class="btn-outline">Learn more about implementation</a>
       </div>
@@ -776,18 +755,11 @@
     <h2 class="sh">Growing companies where the work has gotten more <em>complicated</em> than the way it gets done.</h2>
 
     <div class="who-body" style="margin-top:var(--s6);">
-      <p>It fits especially well in professional services, accounting, recruiting, marketing agencies, and B2B service companies, where teams spend big chunks of the week on email, research, reporting, sales admin, onboarding, and documents.</p>
+      <p>It fits especially well in professional services, accounting, recruiting, marketing agencies, and B2B service companies. Teams spend big chunks of the week on email, research, reporting, sales admin, onboarding, and documents.</p>
       <p>You're a fit if you have:</p>
+      <p>A workflow with real volume behind it. A CEO or COO willing to sponsor the change. Access to the people and systems involved. An appetite to change how the work gets done.</p>
+      <p>You don't need an AI department, a chief AI officer, or anyone technical on staff.</p>
     </div>
-
-    <div class="criteria-list">
-      <div class="criteria-row">A workflow with real volume behind it</div>
-      <div class="criteria-row">A CEO or COO willing to sponsor the change</div>
-      <div class="criteria-row">Access to the people and systems involved</div>
-      <div class="criteria-row">An appetite to change how the work gets done</div>
-    </div>
-
-    <p class="who-body" style="max-width:58ch;">You don't need an AI department, a chief AI officer, or anyone technical on staff.</p>
     <p class="who-quote">"We know AI matters. We just don't know what to do with it."</p>
     <p style="font-size:16px;color:var(--ink-2);margin-top:var(--s2);">That's exactly where we start.</p>
   </div>
