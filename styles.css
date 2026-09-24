@@ -215,14 +215,14 @@ html.lenis, html.lenis body { height: auto; }
 /* ── HERO ──────────────────────────────────────────────────────────────── */
 .hero {
   position: relative; overflow: hidden; background: var(--navy-black); color: var(--on-dark);
-  min-height: 100svh; display: flex; align-items: flex-end;
-  padding-block: calc(env(safe-area-inset-top, 0px) + 140px) clamp(64px, 9vh, 112px);
+  min-height: 100svh; display: flex; align-items: center;
+  padding-block: calc(env(safe-area-inset-top, 0px) + 112px) clamp(72px, 10vh, 120px);
 }
 .flow { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-vignette {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 72%, rgba(15,22,38,0.92) 0%, rgba(15,22,38,0.55) 45%, transparent 75%),
+    radial-gradient(ellipse 70% 60% at 26% 52%, rgba(15,22,38,0.92) 0%, rgba(15,22,38,0.55) 45%, transparent 75%),
     linear-gradient(180deg, rgba(15,22,38,0.55) 0%, transparent 28%, transparent 70%, rgba(15,22,38,0.9) 100%);
 }
 .hero-inner { position: relative; z-index: 2; }
@@ -236,7 +236,7 @@ html.lenis, html.lenis body { height: auto; }
 .hero-sub { font-size: var(--fs-lede); line-height: 1.6; color: var(--on-dark-2); max-width: 54ch; }
 .hero-sub:first-child { color: var(--on-dark); }
 .hero-sub + .hero-sub { margin-top: var(--s4); }
-.hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 30px; }
 .hero-caption { font-size: 13px; color: var(--on-dark-2); opacity: 0.7; letter-spacing: 0.01em; max-width: 42ch; margin-top: 6px; }
 .link-wrap {
   display: block; max-width: 38ch; text-wrap: balance; background: none; padding-bottom: 0;
