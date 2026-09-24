@@ -3,3 +3,5 @@
 wrangler.toml
 .gitignore
 .assetsignore
+.claude
+wrangler.preview.toml
